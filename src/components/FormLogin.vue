@@ -46,10 +46,10 @@
             class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >Quên mật khẩu?</a
           >
-          <a
-            href="#"
+          <RouterLink
+            to="/signup"
             class="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >Đăng ký</a
+            >Đăng ký</RouterLink
           >
         </div>
         <button
@@ -69,12 +69,13 @@ import { ref, reactive } from 'vue'
 import { validateEmail } from '../utils/validate'
 import { useRouter } from 'vue-router'
 
+const router = useRouter()
+
 const userData = {
   email: 'admin@gmail.com',
   password: '123123123'
 }
 
-const router = useRouter()
 const valueForm = reactive({
   email: '',
   password: ''
@@ -115,10 +116,13 @@ const handleLogin = () => {
   try {
     // fetch API
 
-    if (userData.email !== valueForm.email || userData.password !== valueForm.password) {
+    if (
+      userData.email !== valueForm.email.trim() ||
+      userData.password !== valueForm.password.trim()
+    ) {
       textPasswordError.value = 'Tài khoản không chính xác! Vui lòng kiểm tra lại'
     } else {
-      router.push('/')
+      router.push('/auth-otp')
     }
     valueForm.email = ''
     valueForm.password = ''

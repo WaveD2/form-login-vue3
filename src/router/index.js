@@ -12,7 +12,18 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/FormAuthView.vue')
+      component: () => import('../components/FormLogin.vue')
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('../components/FormSignUp.vue')
+    },
+
+    {
+      path: '/auth-otp',
+      name: 'otp',
+      component: () => import('../components/OTP.vue')
     }
   ]
 })
