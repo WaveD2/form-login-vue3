@@ -14,7 +14,7 @@
           v-model="domain.value"
         />
         <p v-show="domain.isCheck" class="mt-2 text-sm font-medium text-red-500">
-          Domain không xác định
+          Không xác định được Domain
         </p>
       </div>
       <button
@@ -33,13 +33,17 @@
 import { useRouter } from 'vue-router'
 import { validateDomain } from '@/utils/validate'
 import { reactive } from 'vue'
-const emit = defineEmits(['getDomain'])
+
 const router = useRouter()
+
+const emit = defineEmits(['getDomain'])
+const props = defineProps(['handleDomain'])
 
 const domain = reactive({
   isCheck: false,
   value: ''
 })
+
 const handleGetDomain = () => {
   if (!domain.value) return (domain.isCheck = true)
 
@@ -48,10 +52,10 @@ const handleGetDomain = () => {
     domain.isCheck = true
     return
   }
-  emit('getDomain', domain.value.split('.')[0])
+  props.handleDomain(validateDomain(domain.value).split('.')[0])
   router.push('/')
-  domain.value = ''
 
+  domain.value = ''
   domain.isCheck = false
 }
 </script>

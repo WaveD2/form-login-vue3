@@ -102,6 +102,7 @@ const validateForm = () => {
     textError.msg = ''
     router.push('/auth-otp')
   } catch (error) {
+    console.log('err', error)
     const { path, errors } = error
     textError.type = path
     textError.msg = errors[0]

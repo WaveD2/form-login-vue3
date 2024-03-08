@@ -8,6 +8,13 @@ export function validatePassword(password) {
 }
 
 export function validateDomain(url) {
-  const regex = /^([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
-  return regex.test(url)
+  const regex = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.){1,}[a-zA-Z]{2,}(:[0-9]{1,})?(\/.*)?$/
+
+  const match = url.match(regex)
+
+  if (match) {
+    return match[3]
+  }
+
+  return null
 }

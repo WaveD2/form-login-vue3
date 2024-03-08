@@ -9,7 +9,7 @@
     domain : {{ titleDomain }}
   </p>
   <div class="">
-    <get-domain @getDomain="handleGetDomain" />
+    <get-domain :handleDomain="handleDomain" />
   </div>
 </template>
 
@@ -18,8 +18,8 @@ import GetDomain from '@/components/GetDomain.vue'
 import { ref } from 'vue'
 
 const titleDomain = ref('')
-const handleGetDomain = (domain) => {
-  console.log('home', domain)
+
+const handleDomain = (domain) => {
   titleDomain.value = domain
 }
 </script>

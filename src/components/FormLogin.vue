@@ -123,6 +123,7 @@ const handleLogin = () => {
       textPasswordError.value = 'Tài khoản không chính xác! Vui lòng kiểm tra lại'
     } else {
       router.push('/auth-otp')
+      localStorage.setItem('isLogin', true)
     }
     valueForm.email = ''
     valueForm.password = ''

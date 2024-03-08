@@ -1,5 +1,11 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView, useRouter } from 'vue-router'
+
+const router = useRouter()
+const isLogin = localStorage.getItem('isLogin')
+
+if (Boolean(isLogin)) router.push('/')
+else router.push('/login')
 </script>
 
 <template>
